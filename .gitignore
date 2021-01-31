@@ -1,0 +1,11 @@
+# Misc Ignores
+.DS_Store
+
+# Dev ignores
+.idea
+venv
+__pycache__
+
+# App ignores
+config.json
+.feeds
