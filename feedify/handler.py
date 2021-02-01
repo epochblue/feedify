@@ -1,7 +1,6 @@
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
-
 import time
 
 from . import Feedifier
@@ -12,7 +11,8 @@ class FeedifyHandler(BaseHTTPRequestHandler):
         self.config = config
         super().__init__(*args, **kwargs)
 
-    def needs_refresh(self, url):
+    @staticmethod
+    def needs_refresh(url):
         mtime = None
         path = Path(f'.feeds/{url}.xml')
         if path.exists():
@@ -41,7 +41,7 @@ class FeedifyHandler(BaseHTTPRequestHandler):
             self.not_found()
             return
 
-        if self.needs_refresh(url):
+        if FeedifyHandler.needs_refresh(url):
             feed = Feedifier(self.config[url], url).get_full_feed()
             with Path(f'.feeds/{url}.xml').open(mode='w') as f:
                 f.write(feed)
