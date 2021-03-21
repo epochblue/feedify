@@ -1,5 +1,5 @@
 import time
-from unittest.mock import patch, Mock
+from unittest.mock import patch
 
 from feedify.handler import FeedifyHandler
 

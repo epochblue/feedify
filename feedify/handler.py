@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 import time
 
-from . import Feedifier
+from feedify.converters import RSSFeedifier
 
 
 class FeedifyHandler(BaseHTTPRequestHandler):
@@ -37,12 +37,12 @@ class FeedifyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         url = self.path.strip('/')
 
-        if url not in self.config:
+        if url not in self.config.get('sites', {}):
             self.not_found()
             return
 
         if FeedifyHandler.needs_refresh(url):
-            feed = Feedifier(self.config[url], url).get_full_feed()
+            feed = RSSFeedifier(self.config, url).get_full_feed()
             with Path(f'.feeds/{url}.xml').open(mode='w') as f:
                 f.write(feed)
         else:

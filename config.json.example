@@ -1,13 +1,15 @@
 {
-    "www.example.com": {
-        "post_selector": "article.post",
-        "date_selector": "p.post-date",
-        "date_format": "%B %d, %Y",
-        "title_selector": ".post-title",
-        "permalink_selector": ".post-title a",
-        "content_selector": ".post-content",
-        "site_description": "Being an example since 2021",
-        "site_title": "Example author",
-        "site_author": "Example author"
+    "sites": {
+        "www.example.com": {
+            "post_selector": "article.post",
+            "date_selector": "p.post-date",
+            "date_format": "%B %d, %Y",
+            "title_selector": ".post-title",
+            "permalink_selector": ".post-title a",
+            "content_selector": ".post-content",
+            "site_description": "Being an example since 2021",
+            "site_title": "Example author",
+            "site_author": "Example author"
+        }
     }
 }
